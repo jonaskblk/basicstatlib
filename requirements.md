@@ -2,9 +2,9 @@
 
 ## Vectors
 
-- [ ] Vektor beliebiger Größe erzeugen
-  - [ ] Umsetzung
-  - [ ] Unit-Test
+- [X] Vektor beliebiger Größe erzeugen
+  - [X] Umsetzung
+  - [X] Unit-Test
 - [ ] Komponente eines Vektors einsehen
   - [ ] Umsetzung
   - [ ] Unit-Test
