@@ -22,3 +22,8 @@ class Vector:
         vector_a = Vector(self.components)
         assert len(vector_a.components) == len(vector_b.components), "Vectors must be of the same length"
         self.components = [a_i + b_i for a_i, b_i in zip(vector_a.components, vector_b.components)]
+
+    def subtract(self, vector_b: 'Vector'):
+        vector_a = Vector(self.components)
+        assert len(vector_a.components) == len(vector_b.components), "Vectors must be of the same length"
+        self.components = [a_i - b_i for a_i, b_i in zip(vector_a.components, vector_b.components)]
