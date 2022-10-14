@@ -57,6 +57,33 @@ def test_create_empty_vector_fail() -> None:
         values = []
         Vector(values)
 
+@pytest.mark.parametrize("values", [
+    (
+        [1, 2, 3]
+    ),
+    (
+        [0.0, 0.0, 0.0]
+    ),
+    (
+        [-1.0, -2.0, -3.0]
+    ),
+    (
+        [-1.1, 2.0, 33.3]
+    ),
+])
+def test_get_component_by_index(values) -> None:
+    vector_a = Vector(values)
+    assert vector_a.get_component_by_index(1) == values[0]
+    assert vector_a.get_component_by_index(2) == values[1]
+    assert vector_a.get_component_by_index(3) == values[2]
+
+def test_set_value_of_component() -> None:
+    vector_a = Vector([1.0, 2.0, 3.0])
+    index_of_component = 2
+    new_value = 3.0
+    vector_a.set_value_of_component(index_of_component, new_value)
+    assert vector_a.components[index_of_component - 1] == new_value
+
 def test_add_two_vectors_success() -> None:
     vector_a = Vector([1, 2, 3])
     vector_b = Vector([4, 5, 6])

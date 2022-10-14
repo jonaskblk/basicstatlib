@@ -6,17 +6,17 @@
   - [X] Umsetzung
   - [X] Unit-Test
 - [ ] Komponente eines Vektors einsehen
-  - [ ] Umsetzung
+  - [X] Umsetzung
   - [ ] Unit-Test
 - [ ] Komponente eines Vektors setzen
-  - [ ] Umsetzung
+  - [X] Umsetzung
   - [ ] Unit-Test
-- [ ] Zwei Vektoren addieren
-  - [ ] Umsetzung
-  - [ ] Unit-Test
-- [ ] Zwei Vektoren subtrahieren
-  - [ ] Umsetzung
-  - [ ] Unit-Test
+- [X] Zwei Vektoren addieren
+  - [X] Umsetzung
+  - [X] Unit-Test
+- [X] Zwei Vektoren subtrahieren
+  - [X] Umsetzung
+  - [X] Unit-Test
 - [ ] Liste von Vektoren aufsummieren
   - [ ] Umsetzung
   - [ ] Unit-Test
