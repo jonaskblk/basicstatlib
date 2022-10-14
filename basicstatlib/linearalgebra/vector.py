@@ -1,15 +1,22 @@
 class Vector:
     def __init__(self, components: list) -> None:
+        self.__guard_components_not_empty(components)
+        self.__guard_components_of_type_float_or_int(components)
+
+        self.components = components
+    
+    def __guard_components_not_empty(self, components: list) -> None:
         if (components.__eq__([])):
             raise ValueError("A Vector consists of at least one component")
 
+    def __guard_components_of_type_float_or_int(self, components: list) -> None:
         if (all([isinstance(component, float) for component in components])):
-            self.components = components
+            pass
         elif (all([isinstance(component, int) for component in components])):
-            self.components = components
+            pass
         else:
             raise ValueError("Components must be of type float or int")
-    
+
     def get_component_by_index(self, index: int) -> float:
         assert index > 0, "Index must be greater then 0"
         return self.components[index - 1]
