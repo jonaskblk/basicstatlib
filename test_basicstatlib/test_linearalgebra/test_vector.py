@@ -1,8 +1,7 @@
 import pytest
+from basicstatlib.linearalgebra.vector import Vector
 
-from .. linearalgebra.vector import Vector
-
-@pytest.mark.parametrize('values', [
+@pytest.mark.parametrize("values", [
     (
         [0, 1, 3]
     ),
@@ -20,7 +19,7 @@ def test_create_int_vector_success(values) -> None:
     vector = Vector(values)
     assert vector.components.__eq__(values)
 
-@pytest.mark.parametrize('values', [
+@pytest.mark.parametrize("values", [
     (
         [0.1, 1.0, 3.0]
     ),
@@ -38,7 +37,7 @@ def test_create_float_vector_success(values) -> None:
     vector = Vector(values)
     assert vector.components.__eq__(values)
 
-@pytest.mark.parametrize('values', [
+@pytest.mark.parametrize("values", [
     (
         ["word", 1, 3]
     ),
