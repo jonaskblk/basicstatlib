@@ -1,4 +1,4 @@
-# Requirements for basisstatlib
+# Requirements for qlib
 
 ## Vectors
 

@@ -1,5 +1,5 @@
 import pytest
-from basicstatlib.linearalgebra.vector import Vector
+from qlib.linearalgebra.vector import Vector
 
 @pytest.mark.parametrize("values", [
     (
