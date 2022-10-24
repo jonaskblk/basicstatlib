@@ -1,19 +1,11 @@
-"""Contains all types and procedures associated with a mathematical vector.
+"""Contains definition for type Vector and VectorValidator.
 """
 
 from .common import CommonValidator
 
 
 class Vector:
-    """Defines objects of type vector.
-
-    Raises:
-        Exception: _description_
-        ValueError: _description_
-        ValueError: _description_
-        ValueError: _description_
-        Exception: _description_
-        ValueError: _description_
+    """Defines instances of type vector.
 
     Returns:
         _type_: vector
@@ -21,15 +13,16 @@ class Vector:
 
     def __init__(self, components: list) -> None:
         self.__vector_validator = VectorValidator()
+        self.__set_components(components)
+
+    def __set_components(self, components) -> None:
         self.__vector_validator.guard_components_not_empty(components)
         self.__vector_validator.guard_components_of_type_float_or_int(
             components)
-
-        self.__components = components
+        self.__components = [float(index) for index in components]
 
     def __eq__(self, other: 'object') -> bool:
         self.__vector_validator.guard_is_of_type_vector(other)
-
         return self.__components.__eq__(other.get_components())  # type: ignore
 
     def __str__(self) -> str:
@@ -39,21 +32,39 @@ class Vector:
         return f"Vector({self.__components.__str__()})"
 
     def get_components(self) -> list:
-        """Returns the components of a vector object as a list.
+        """Returns the components of a vector instance as a list.
         """
         return self.__components
 
     def get_component_by_index(self, index: int) -> float:
-        self.__vector_validator.guard_index_greater_then_zero(index)
+        """Returns the value of a single component specified by a given index.
 
+        Args:
+            index (int): Index of component greater than 0
+
+        Returns:
+            float: Value of component at given index
+        """
+        self.__vector_validator.guard_index_greater_then_zero(index)
         return self.__components[index - 1]
 
-    def set_value_of_component(self, index: int, value: float) -> float:  # type: ignore
+    def set_value_of_component(self, index: int, value: float) -> None:  # type: ignore
+        """Sets the value of a single component specified by a given index.
+
+        Args:
+            index (int): Index of the manipulated component greatar than 0
+            value (float): New Value of the component
+        """
         self.__vector_validator.guard_index_greater_then_zero(index)
 
         self.__components[index - 1] = value
 
-    def add(self, vector_b: 'Vector'):
+    def add(self, vector_b: 'Vector') -> None:
+        """Adds up two vectors componentwise.
+
+        Args:
+            vector_b (Vector): Vector that should be added
+        """
         vector_a = Vector(self.__components)
         self.__vector_validator.guard_equal_length_of_components(
             vector_a, vector_b)
@@ -61,6 +72,11 @@ class Vector:
             a_i + b_i for a_i, b_i in zip(vector_a.get_components(), vector_b.get_components())]
 
     def subtract(self, vector_b: 'Vector'):
+        """Subtracts one vector to from the other componentwise.
+
+        Args:
+            vector_b (Vector): Vector that should be subtracted
+        """
         vector_a = Vector(self.__components)
         self.__vector_validator.guard_equal_length_of_components(
             vector_a, vector_b)
@@ -68,10 +84,15 @@ class Vector:
             a_i - b_i for a_i, b_i in zip(vector_a.get_components(), vector_b.get_components())]
 
     def multiply_with_scalar(self, scalar: float) -> None:
+        """Multiplys a vector componentwise with a given scalar.
+
+        Args:
+            scalar (float): Number which the components get multiplied with
+        """
         self.__vector_validator.guard_is_a_number(scalar)
         vector = Vector(self.__components)
-        self.__components = [
-            index * scalar for index in vector.get_components()]
+        new_components = [index * scalar for index in vector.get_components()]
+        self.__set_components(new_components)
 
     def sum_of_squares(self) -> float:  # type: ignore
         pass

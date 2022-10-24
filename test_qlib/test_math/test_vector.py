@@ -31,13 +31,13 @@ def test___eq__() -> None:
 
 def test___str__() -> None:
     vector = Vector([5, 7, 9])
-    str_of_vector = "[5, 7, 9]"
+    str_of_vector = "[5.0, 7.0, 9.0]"
     assert vector.__str__() == str_of_vector
 
 
 def test___repr__() -> None:
     vector = Vector([5, 7, 9])
-    repr_of_vector = "Vector([5, 7, 9])"
+    repr_of_vector = "Vector([5.0, 7.0, 9.0])"
     assert vector.__repr__() == repr_of_vector
 
 
