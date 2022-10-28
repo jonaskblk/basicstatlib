@@ -76,10 +76,11 @@ class Vector:
         vector_a = Vector(self.__components)
         self.__vector_validator.guard_equal_length_of_components(
             vector_a, vector_b)
-        self.__components = [
+        new_components = [
             a_i + b_i for a_i, b_i in zip(vector_a.get_components(), vector_b.get_components())]
+        self.__set_components(new_components)
 
-    def subtract(self, vector_b: 'Vector'):
+    def subtract(self, vector_b: 'Vector') -> None:
         """Subtracts one vector to from the other componentwise.
 
         Args:
@@ -88,8 +89,9 @@ class Vector:
         vector_a = Vector(self.__components)
         self.__vector_validator.guard_equal_length_of_components(
             vector_a, vector_b)
-        self.__components = [
+        new_components = [
             a_i - b_i for a_i, b_i in zip(vector_a.get_components(), vector_b.get_components())]
+        self.__set_components(new_components)
 
     def multiply_with_scalar(self, scalar: float) -> None:
         """Multiplys a vector componentwise with a given scalar.
