@@ -59,6 +59,14 @@ class Vector:
 
         self.__components[index - 1] = value
 
+    def get_number_of_components(self) -> int:
+        """Gets the number components.
+
+        Returns:
+            int: Number of components.
+        """
+        return int(len(self.__components))
+
     def add(self, vector_b: 'Vector') -> None:
         """Adds up two vectors componentwise.
 
@@ -108,11 +116,46 @@ class Vector:
 
     @ staticmethod
     def sum_up_vectors(vectors: list['Vector']) -> 'Vector':  # type: ignore
-        pass
+        """Sums up a list of vectors componentwise.
+
+        Args:
+            vectors (list[&#39;Vector&#39;]): Vector-list of interest
+
+        Returns:
+            Vector: Summed up vectors as a new vector
+        """
+        vector_validator = VectorValidator()
+        vector_validator.guard_list_of_vectors_not_empty(vectors)
+        vector_validator.guard_equal_length_of_components_in_list(vectors)
+
+        number_of_components = vectors[0].get_number_of_components()
+
+        sum_of_components = []
+        for i in range(number_of_components):
+            for vector in vectors:
+                value_of_component = vector.get_component_by_index(i + 1)
+                sum_of_components[number_of_components] += value_of_component
+
+        return Vector(sum_of_components)
 
     @ staticmethod
     def mean_of_vectors(vectors: list['Vector']) -> 'Vector':  # type: ignore
-        pass
+        """Calculates the mean of a list of vectors componentwise.
+
+        Args:
+            vectors (list[&#39;Vector&#39;]): Vector-list of interests
+
+        Returns:
+            Vector: Mean of vectors as a new vector
+        """
+        vector_validator = VectorValidator()
+        vector_validator.guard_list_of_vectors_not_empty(vectors)
+        vector_validator.guard_equal_length_of_components_in_list(vectors)
+
+        number_of_vectors = len(vectors)
+        sum_of_vectors = Vector.sum_up_vectors(vectors)
+        sum_of_vectors.multiply_with_scalar(1/number_of_vectors)
+        return sum_of_vectors
 
 
 class VectorValidator:
@@ -143,8 +186,17 @@ class VectorValidator:
         if not len(vector_a.get_components()) == len(vector_b.get_components()):
             raise Exception("Vectors must be of the same length")
 
+    def guard_equal_length_of_components_in_list(self, vectors: list[Vector]) -> None:
+        awaited_length_of_components = len(vectors[0].get_components())
+        if not all(len(i.get_components()) == awaited_length_of_components for i in vectors):
+            raise Exception("Vectors must be of the same length")
+
     def guard_is_a_number(self, input_of_random_type) -> None:
         try:
             self.common_validator.guard_is_a_number(input_of_random_type)
         except ValueError as value_error:
             raise value_error
+
+    def guard_list_of_vectors_not_empty(self, list_of_vectors: list[Vector]) -> None:
+        if (list_of_vectors == []):
+            raise Exception("The list of vectors can not be empty")
