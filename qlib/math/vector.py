@@ -112,19 +112,19 @@ class VectorValidator:
         self.common_validator = CommonValidator()
 
     def guard_components_not_empty(self, components: list) -> None:
-        if (components == []):
+        if components == []:
             raise Exception("A Vector consists of at least one component")
 
     def guard_components_of_type_float_or_int(self, components: list) -> None:
-        if (all([isinstance(component, float) for component in components])):
+        if all([isinstance(component, float) for component in components]):
             pass
-        elif (all([isinstance(component, int) for component in components])):
+        elif all([isinstance(component, int) for component in components]):
             pass
         else:
             raise ValueError("Components must be of type float or int")
 
     def guard_is_of_type_vector(self, object_to_check: object) -> None:
-        if not (isinstance(object_to_check, Vector)):
+        if not isinstance(object_to_check, Vector):
             raise ValueError("Object must be of type vector")
 
     def guard_index_greater_then_zero(self, index) -> None:
@@ -147,5 +147,5 @@ class VectorValidator:
             raise value_error
 
     def guard_list_of_vectors_not_empty(self, list_of_vectors: list[Vector]) -> None:
-        if (list_of_vectors == []):
+        if list_of_vectors == []:
             raise Exception("The list of vectors can not be empty")
