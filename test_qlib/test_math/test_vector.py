@@ -1,5 +1,5 @@
 import pytest
-from qlib.math.vector import Vector
+from qlib.math.vector import Vector, VectorValidator
 
 
 class TestVector:
@@ -151,7 +151,8 @@ class TestVector:
 class TestVectorValidator:
 
     def test_guard_components_not_empty(self) -> None:
-        pass
+        vector_validator = VectorValidator()
+        vector_validator.guard_components_not_empty([1, 2, 3])
 
     def test_guard_components_of_type_float_or_int(self) -> None:
         pass
